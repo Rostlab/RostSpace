@@ -1736,7 +1736,6 @@ def get_callbacks(
         if ctx.triggered_id == "dd_menu" and switch is False:
             raise PreventUpdate
 
-
         # get coordinates of current selected dimensionality reduction to transform them into nd-array
         if dim_red == "UMAP":
             x = "x_umap"
@@ -1750,7 +1749,8 @@ def get_callbacks(
             x = "x_tsne"
             y = "y_tsne"
             z = "z_tsne"
-        #fit = df[[x, y, z]].to_numpy()
+
+        # fit = df[[x, y, z]].to_numpy()
 
         # get embeddings in order of the df
         embeddings_dict = dict(zip(embedding_uids, embeddings))
@@ -1770,7 +1770,7 @@ def get_callbacks(
 
         # create the distance matrix (for embeddings and reduced space)
         distmat_embs = ts_ss(ord_embeddings, ord_embeddings)
-        distmat_fit = cdist(fit, fit, metric='euclidean') #ts_ss(fit, fit)
+        distmat_fit = cdist(fit, fit, metric='euclidean')  # ts_ss(fit, fit)
 
         # calculate the silhouette score
         silhouette_score_emb = silhouette(distmat_embs, labels)
@@ -1783,11 +1783,19 @@ def get_callbacks(
         # Set up the body of the collapse, what will be displayed in the web browser
         collapse_body = dbc.Card(
             dbc.CardBody(
-                f"silhouette score embeddings: {round(silhouette_score_emb, 3)}  |  "
-                f"silhouette score {dim_red}: {round(silhouette_score_current, 3)}  |  "
-                f"trustworthiness score: {round(trustworthiness_score, 3)}  |  "
-                f"spearman score: {round(spearman_score, 3)}"
-            )
+                dbc.Row(
+                    children=[
+                        dbc.Col(f"silhouette score embeddings: {round(silhouette_score_emb, 3)}",
+                                style={"text-align": "center"}),
+                        dbc.Col(f"silhouette score {dim_red}: {round(silhouette_score_current, 3)}",
+                                style={"text-align": "center"}),
+                        dbc.Col(f"trustworthiness score: {round(trustworthiness_score, 3)}",
+                                style={"text-align": "center"}),
+                        dbc.Col(f"spearman score: {round(spearman_score, 3)}",
+                                style={"text-align": "center"}),
+                    ],
+                ),
+            ),
         )
 
         if switch:
