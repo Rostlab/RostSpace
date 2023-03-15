@@ -1045,8 +1045,8 @@ def get_callbacks(
                     x = df.at[seq_id, "x_umap_2D"]
                     y = df.at[seq_id, "y_umap_2D"]
                 elif dim_red == "PCA":
-                    x = df.at[seq_id, "x_pca_2D"]
-                    y = df.at[seq_id, "y_pca_2D"]
+                    x = df.at[seq_id, "x_pca_3D"]
+                    y = df.at[seq_id, "y_pca_3D"]
                 else:
                     x = df.at[seq_id, "x_tsne_2D"]
                     y = df.at[seq_id, "y_tsne_2D"]
@@ -1136,8 +1136,8 @@ def get_callbacks(
                                 x_coords.append(df.at[seq_id, "x_umap_2D"])
                                 y_coords.append(df.at[seq_id, "y_umap_2D"])
                             elif dim_red == "PCA":
-                                x_coords.append(df.at[seq_id, "x_pca_2D"])
-                                y_coords.append(df.at[seq_id, "y_pca_2D"])
+                                x_coords.append(df.at[seq_id, "x_pca_3D"])
+                                y_coords.append(df.at[seq_id, "y_pca_3D"])
                             else:
                                 x_coords.append(df.at[seq_id, "x_tsne_2D"])
                                 y_coords.append(df.at[seq_id, "y_tsne_2D"])
@@ -1768,9 +1768,9 @@ def get_callbacks(
             y = "y_umap_3D"
             z = "z_umap_3D"
         elif dim_red == "PCA":
-            x = "x_pca"
-            y = "y_pca"
-            z = "z_pca"
+            x = "x_pca_3D"
+            y = "y_pca_3D"
+            z = "z_pca_3D"
         else:
             x = "x_tsne_3D"
             y = "y_tsne_3D"

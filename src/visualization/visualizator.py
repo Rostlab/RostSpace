@@ -444,8 +444,8 @@ class Visualizator:
                 x = "x_umap_2D"
                 y = "y_umap_2D"
             elif dim_red == "PCA":
-                x = "x_pca_2D"
-                y = "y_pca_2D"
+                x = "x_pca_3D"
+                y = "y_pca_3D"
             else:
                 x = "x_tsne_2D"
                 y = "y_tsne_2D"
